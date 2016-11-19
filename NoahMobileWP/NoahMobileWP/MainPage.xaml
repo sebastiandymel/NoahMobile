@@ -1,0 +1,54 @@
+﻿<phone:PhoneApplicationPage x:Class="NoahMobileWP.MainPage"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                            FontSize="{StaticResource PhoneFontSizeNormal}"
+                            Foreground="{StaticResource PhoneForegroundBrush}"
+                            Orientation="Portrait"
+                            SupportedOrientations="Portrait"
+                            d:DataContext="{d:DesignData /SampleData/SampleDataSource/SampleDataSource.xaml}"
+                            shell:SystemTray.IsVisible="True"
+                            mc:Ignorable="d">
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel x:Name="TitlePanel"
+                    Grid.Row="0"
+                    Margin="12,17,0,28">
+            <TextBlock Margin="12,0"
+                       Style="{StaticResource PhoneTextNormalStyle}"
+                       Text="*SEDY* NOAH MOBILE" />
+            <TextBlock Margin="9,-7,0,0"
+                       Style="{StaticResource PhoneTextExtraLargeStyle}"
+                       Text="Patient browser" />
+        </StackPanel>
+
+        <!--  ContentPanel - place additional content here  -->
+        <Grid x:Name="ContentPanel"
+              Grid.Row="1"
+              Margin="12,0,12,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Vertical">
+                <Button Click="OnConnect" Content="Connect" />
+                <Button Command="{Binding LoadPatientDataCommand}" Content="LoadPatientData" />
+            </StackPanel>
+
+            <ListBox Grid.Row="1"
+                     HorizontalAlignment="Stretch"
+                     HorizontalContentAlignment="Stretch"
+                     ItemsSource="{Binding Patients}"
+                     Style="{StaticResource Style.ListBox.Patients}" />
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>
